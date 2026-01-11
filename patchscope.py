@@ -23,8 +23,8 @@ def next_token_patchscope(
 
     Returns precision@1, surprisal, and the logits as a 1D vector.
 
-    Credit: algorithm from https://arxiv.org/pdf/2401.06102, with code adapted from the
-    paper's code.
+    Credit: code adapted from the repo of https://arxiv.org/pdf/2401.06102 to use
+    TransformerLens instead of PyTorch hooks.
     """
     logits_src, cache = model.run_with_cache(prompt_src)
     logits_src = logits_src[0, pos_src]
