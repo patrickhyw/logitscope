@@ -1,18 +1,16 @@
 # Simplescope
 ![Plot showing improved results](prec1.png)
 
-## Abstract
 A simplified and more performant next token Patchscope from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
 
 ## Background
-Section 4.1 of the [Patchscopes paper](https://arxiv.org/abs/2401.06102) describes the next token Patchscope approach. Briefly, the idea is to take a prompt like `"cat->cat;135->135;hello->hello;?"`, patch the residual activation from any layer in the last token of some prompt, and see if we can correctly predict the next token.
+Section 4.1 of the [Patchscopes paper](https://arxiv.org/abs/2401.06102) describes the next token Patchscope approach. Briefly, the idea is to take a prompt like `"cat->cat;135->135;hello->hello;?"`, patch the residual activation from any layer in the last token of some prompt, and see if we can correctly predict the next token. For instance, if you patch the residual of `=` in `"1+1="` into the `?`, you want it to predict `2`.
 
 ## Method
 Instead of `"cat->cat;135->135;hello->hello;?"`, just use `"?"`.
- - The idea is simple and I'm not claiming novelty, but I haven't seen it published so I wanted to share it.
 
 ## Discussion
-`"cat->cat;135->135;hello->hello;?"` feels conceptually flawed:
+`"cat->cat;135->135;hello->hello;?"` feels conceptually strange:
 
 1. The in-context examples show `->` tokens after the first tokens, so there's a bias to predicting `->` after the `?`.
     - Indeed, the most likely next token after `?` is `->` if early layers are patched, which can explain why `patchscope` has low performance (this differs from the paper's explanation).
@@ -27,5 +25,5 @@ Instead of `"cat->cat;135->135;hello->hello;?"`, just use `"?"`.
 ![Plot showing improved precision@1](prec1.png)
 ![Plot showing improved surprisal](surprisal.png)
 
-## Running
+## How to Run
 Run `pip install -r requirements.txt` and then all cells in `simplescope.ipynb`. I ran this on an 80GB A100 with 100GB of disk space, using Python 3.11.
