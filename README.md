@@ -1,10 +1,10 @@
 # Simplescope
 ![Plot showing improved results](prec1.png)
 
-A simplified and more performant next token Patchscope from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
+A simplified and more performant token identity Patchscope from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
 
 ## Background
-Section 4.1 of the [Patchscopes paper](https://arxiv.org/abs/2401.06102) describes the next token Patchscope technique. Briefly, the idea is to take a prompt like `"cat->cat;135->135;hello->hello;?"`, patch the residual activation from any layer in the last token of some prompt, and see if we can correctly predict the next token. For instance, it would patch the residual of `=` in `"1+1="` into the `?` and would see if it predicts `2`.
+Section 4.1 of the [Patchscopes paper](https://arxiv.org/abs/2401.06102) describes the token identity Patchscope technique. Briefly, the idea is to take a prompt like `"cat->cat;135->135;hello->hello;?"`, patch the residual activation from any layer in the last token of some prompt, and see if we can correctly predict the next token. For instance, it would patch the residual of `=` in `"1+1="` into the `?` and would see if it predicts `2`.
 
 ## Method
 Instead of `"cat->cat;135->135;hello->hello;?"`, just use `"?"`.
@@ -25,4 +25,4 @@ Intuitively, `"cat->cat;135->135;hello->hello;?"` feels conceptually strange:
 ![Plot showing improved surprisal](surprisal.png)
 
 ## How to Run
-Run `pip install -r requirements.txt` and then all cells in `simplescope.ipynb`. I ran this on an 80GB A100 with 100GB of disk space, using Python 3.11.
+Run `pip install -r requirements.txt` and then all cells in `simplescope.ipynb`. I ran this on an A100 80GB with 100GB of disk space, using Python 3.11.
