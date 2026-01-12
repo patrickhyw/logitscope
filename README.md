@@ -21,6 +21,7 @@ Intuitively, `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"` feels strange:
 ## Results
 `simplescope` performs better than `patchscope` in both precision@1 and surprisal (the two metrics in the Patchscope paper) with the same dataset ([The Pile](https://huggingface.co/datasets/EleutherAI/pile)) and one of the same models ([GPT-J 6B](https://huggingface.co/EleutherAI/gpt-j-6b)). I used the same preprocessing steps with slight changes: 2K examples from the start instead of after an offset of 10K, and reduced the word/character limits to avoid running out of GPU memory.
 
+For precision@1, higher is better. For surprisal, lower is better.
 ![Plot showing improved precision@1](prec1.png)
 ![Plot showing improved surprisal](surprisal.png)
 
