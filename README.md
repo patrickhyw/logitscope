@@ -9,14 +9,20 @@ Section 4.1 of the [Patchscopes paper](https://arxiv.org/abs/2401.06102) describ
 ## Method
 Instead of `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`, Simplescope just uses `"?"`.
 
-Intuitively, `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"` feels strange:
+The goal of this is to fix some failure modes of `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`:
 
-1. The in-context examples show `->` tokens after the first tokens, so there's a bias to predicting `->` after the `?`.
-    - Indeed, the most likely next token after `?` is `->` if early layers are patched, which can explain why `patchscope` has low performance (this differs from the paper's explanation).
-2. The in-context examples show a token mapping to itself (e.g. `hello->hello`), not to the next token (e.g. `hello->there`). However, if we patch the residual of `hello` into `?`, we want it to predict `there` and not `hello`.
-3. The prompt ends with `?`, not `->`. Performance degrades significantly if you add a `->`, which I think is due to point 2.
+1. The in-context examples show ` ->` tokens after the first tokens, so there's a bias to predicting ` ->` after the `?`.
+    - Indeed, the most likely next token after `?` is ` ->` if early layers are patched, which can explain why `patchscope` has low performance in early layers.
+2. If ` ->` is added to the end of the prompt, there's a bias towards predicting ` ?`.
+    - This causes a significant drop in performance if ` ->` is added to the end of the prompt.
 
-`"?"` tries to fix this by just removing the parts that don't make sense. It could perhaps be improved by adding a prompt like `"hello->there;?->"`. However, keeping it simple makes it feel like a more expensive but more accurate companion to the original logit lens, where we do the rest of the forward pass instead of skipping to the decoder.
+`"?"` tries to fix these two issues by removing the in-context examples:
+
+1. On a surface level, the bias towards ` ->` gets fixed because ` ->` doesn't appear.
+2. On a deeper level, the bias towards ` ?` can be viewed as a bias towards predicting the *current* token rather than the *next* token.
+    - As a thought experiment, imagine patching the 0th layer pre-residual of a token like `"health"` into the `?` token in `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`. This is equivalent to the prompt `"cat -> cat\n1135 -> 1135\nhello -> hello\nhealth"`, for which the most likely next two tokens are ` -> health`, not ` -> care`. However, the goal of the experiment is to predict the next token, not the current token.
+
+It could perhaps be improved with different in-context examples, such as `"hello->there;?->"`. However, keeping it simple makes it feel like a more expensive and more accurate companion to the original logit lens, where we do the rest of the forward pass instead of skipping to the decoder.
 
 ## Results
 `simplescope` performs better than `patchscope` in both precision@1 and surprisal (the two metrics in the Patchscope paper) with the same dataset ([The Pile](https://huggingface.co/datasets/EleutherAI/pile)) and one of the same models ([GPT-J 6B](https://huggingface.co/EleutherAI/gpt-j-6b)). I used the same preprocessing steps with slight changes: 2K examples from the start instead of after an offset of 10K, and reduced the word/character limits to avoid running out of GPU memory.
