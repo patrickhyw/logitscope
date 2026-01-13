@@ -1,7 +1,7 @@
 # Simplescope
 ![Plot showing improved results](prec1.png)
 
-A simplified and more performant token identity Patchscope from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
+A simplified and more performant next token Patchscope than the one from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
 
 ## Background
 Section 4.1 of the [Patchscopes paper](https://arxiv.org/abs/2401.06102) describes the token identity Patchscope technique. Briefly, the idea is to take a prompt like `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`, patch the residual activation from any layer in the last token of some prompt, and see if we can correctly predict the next token. For instance, it would patch the residual of `=` in `"1+1="` into the `?` and would see if it predicts `2`.
