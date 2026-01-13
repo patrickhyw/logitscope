@@ -4,10 +4,16 @@
 A simplified and more performant next token Patchscope than the one from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
 
 ## Background
-Section 4.1 of the [Patchscopes paper](https://arxiv.org/abs/2401.06102) describes the token identity Patchscope technique. Briefly, the idea is to take a prompt like `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`, patch the residual activation from any layer in the last token of some prompt, and see if we can correctly predict the next token. For instance, it would patch the residual of `=` in `"1+1="` into the `?` and would see if it predicts `2`.
+The **Patchscopes framework** is a general framework, introduced in the [Patchscopes paper](https://arxiv.org/abs/2401.06102), for patching residual activations from some prompt/layer/position/model into another prompt/layer/position/model.
+
+A **Patchscope technique** is a specific parameterization of the Patchscopes framework.
+
+**Next token extraction** is the general problem of extracting the next token of a sequence using a single residual activation somewhere in the sequence. For the problem to be non-trivial, the residual activation should not be the one in the last layer and last position. The [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens) can be viewed as a technique for solving this problem.
+
+The **token identity Patchscope** is a specific Patchscope technique for solving the next token extraction problem. The idea is to take a prompt like `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"` and patch a residual activation into the `?` token without a layer shift. For instance, it could patch the layer 5 residual of `=` in `"1+1="` into the layer 5 residual for the `?` token to see if it predicts `2`.
 
 ## Method
-Instead of `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`, Simplescope just uses `"?"`.
+This project studies a new Patchscope technique for solving the next token extraction problem. It is identical to the token identity Patchscope except that it uses the prompt `"?"` instead of `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`.
 
 The goal of this is to fix some failure modes of `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`:
 
