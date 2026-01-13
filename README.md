@@ -1,5 +1,5 @@
 # Logitscope
-![Image showing logitscope](logitscope.svg)
+<img src="logitscope.svg" alt="image_showing_logitscope" width="50%">
 
 A simplified and more performant next token Patchscope than the one from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
 
