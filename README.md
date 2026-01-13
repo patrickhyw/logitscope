@@ -1,9 +1,9 @@
 # Logitscope
-![Plot showing improved results](prec1.png)
+![Image showing logitscope](logitscope.svg)
 
 A simplified and more performant next token Patchscope than the one from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
 
-Alternatively, it can be viewed as a more expensive and more accurate companion to the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens).
+Alternatively, as a more expensive and more accurate companion to the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens).
 
 ## Background
 The **Patchscopes framework** is a general framework, introduced in the [Patchscopes paper](https://arxiv.org/abs/2401.06102), for patching residual activations from some prompt/layer/position/model into another prompt/layer/position/model.

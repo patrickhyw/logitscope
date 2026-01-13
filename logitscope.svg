@@ -1,0 +1,122 @@
+<svg viewBox="0 0 550 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for residual activations - left square -->
+    <linearGradient id="activation1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:0.8" />
+      <stop offset="25%" style="stop-color:#4ecdc4;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#45b7d1;stop-opacity:0.7" />
+      <stop offset="75%" style="stop-color:#96ceb4;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#ffeaa7;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <!-- Gradient for residual activations - right square -->
+    <linearGradient id="activation2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a29bfe;stop-opacity:0.8" />
+      <stop offset="33%" style="stop-color:#fd79a8;stop-opacity:0.9" />
+      <stop offset="66%" style="stop-color:#fdcb6e;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#00b894;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <!-- Lens glass effect -->
+    <radialGradient id="lensGlass" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.15" />
+      <stop offset="50%" style="stop-color:#aabbcc;stop-opacity:0.08" />
+      <stop offset="100%" style="stop-color:#334455;stop-opacity:0.2" />
+    </radialGradient>
+    
+    <!-- Telescope lens -->
+    <radialGradient id="telescopeLens" cx="40%" cy="40%">
+      <stop offset="0%" style="stop-color:#5588aa;stop-opacity:0.6" />
+      <stop offset="70%" style="stop-color:#336688;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#224466;stop-opacity:0.7" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="550" height="500" fill="#e6e6e6"/>
+  
+  <!-- LEFT SIDE: Magnifying Glass Scene -->
+  <g id="magnifying-glass-scene">
+    <!-- Residual activation square -->
+    <rect x="50" y="300" width="150" height="150" fill="url(#activation1)" stroke="#999" stroke-width="2"/>
+    
+    <!-- Grid pattern for neural network activations -->
+    <g opacity="0.4">
+      <line x1="50" y1="337.5" x2="200" y2="337.5" stroke="#333" stroke-width="1"/>
+      <line x1="50" y1="375" x2="200" y2="375" stroke="#333" stroke-width="1"/>
+      <line x1="50" y1="412.5" x2="200" y2="412.5" stroke="#333" stroke-width="1"/>
+      <line x1="87.5" y1="300" x2="87.5" y2="450" stroke="#333" stroke-width="1"/>
+      <line x1="125" y1="300" x2="125" y2="450" stroke="#333" stroke-width="1"/>
+      <line x1="162.5" y1="300" x2="162.5" y2="450" stroke="#333" stroke-width="1"/>
+    </g>
+    
+    <!-- Activation dots -->
+    <circle cx="70" cy="320" r="4" fill="#fff" opacity="0.9"/>
+    <circle cx="105" cy="355" r="3" fill="#fff" opacity="0.7"/>
+    <circle cx="145" cy="330" r="3.5" fill="#fff" opacity="0.8"/>
+    <circle cx="180" cy="395" r="2.5" fill="#fff" opacity="0.6"/>
+    <circle cx="95" cy="425" r="4" fill="#fff" opacity="0.85"/>
+    <circle cx="160" cy="435" r="3" fill="#fff" opacity="0.7"/>
+    
+    <!-- Magnifying glass - horizontal handle pointing right -->
+    <!-- Lens circle -->
+    <circle cx="125" cy="210" r="70" fill="url(#lensGlass)" stroke="#556677" stroke-width="5"/>
+    <circle cx="125" cy="210" r="65" fill="none" stroke="#778899" stroke-width="2" opacity="0.4"/>
+    
+    <!-- Handle -->
+    <line x1="175" y1="245" x2="230" y2="285" stroke="#445566" stroke-width="12" stroke-linecap="round"/>
+    <line x1="175" y1="245" x2="230" y2="285" stroke="#667788" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Handle grip details -->
+    <line x1="195" y1="258" x2="202" y2="265" stroke="#889999" stroke-width="2" stroke-linecap="round"/>
+    <line x1="210" y1="270" x2="217" y2="277" stroke="#889999" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- RIGHT SIDE: Telescope Scene -->
+  <g id="telescope-scene">
+    <!-- Residual activation square -->
+    <rect x="350" y="300" width="150" height="150" fill="url(#activation2)" stroke="#999" stroke-width="2"/>
+    
+    <!-- Grid pattern -->
+    <g opacity="0.4">
+      <line x1="350" y1="337.5" x2="500" y2="337.5" stroke="#333" stroke-width="1"/>
+      <line x1="350" y1="375" x2="500" y2="375" stroke="#333" stroke-width="1"/>
+      <line x1="350" y1="412.5" x2="500" y2="412.5" stroke="#333" stroke-width="1"/>
+      <line x1="387.5" y1="300" x2="387.5" y2="450" stroke="#333" stroke-width="1"/>
+      <line x1="425" y1="300" x2="425" y2="450" stroke="#333" stroke-width="1"/>
+      <line x1="462.5" y1="300" x2="462.5" y2="450" stroke="#333" stroke-width="1"/>
+    </g>
+    
+    <!-- Activation dots -->
+    <circle cx="375" cy="325" r="3" fill="#fff" opacity="0.8"/>
+    <circle cx="410" cy="360" r="4" fill="#fff" opacity="0.9"/>
+    <circle cx="450" cy="340" r="2.5" fill="#fff" opacity="0.7"/>
+    <circle cx="480" cy="400" r="4" fill="#fff" opacity="0.85"/>
+    <circle cx="395" cy="430" r="3" fill="#fff" opacity="0.65"/>
+    <circle cx="465" cy="440" r="3.5" fill="#fff" opacity="0.8"/>
+    
+    <!-- Telescope pointing down -->
+    <!-- Eyepiece at top -->
+    <ellipse cx="425" cy="60" rx="12" ry="8" fill="#667788" stroke="#778899" stroke-width="1.5"/>
+    
+    <!-- Upper tube section -->
+    <rect x="410" y="65" width="30" height="35" fill="#556677" stroke="#667788" stroke-width="1.5" rx="2"/>
+    
+    <!-- Middle connector -->
+    <rect x="405" y="100" width="40" height="20" fill="#4a5a6a" stroke="#5a6a7a" stroke-width="1.5"/>
+    
+    <!-- Main body tube -->
+    <path d="M400 120 L390 240 L460 240 L450 120 Z" fill="#445566" stroke="#556677" stroke-width="2"/>
+    
+    <!-- Tube details/bands -->
+    <line x1="398" y1="150" x2="452" y2="150" stroke="#5a6a7a" stroke-width="2"/>
+    <line x1="395" y1="190" x2="455" y2="190" stroke="#5a6a7a" stroke-width="2"/>
+    
+    <!-- Objective lens at bottom -->
+    <ellipse cx="425" cy="250" rx="38" ry="15" fill="#3a4a5a" stroke="#4a5a6a" stroke-width="2"/>
+    <ellipse cx="425" cy="250" rx="30" ry="12" fill="url(#telescopeLens)" stroke="#5588aa" stroke-width="1.5"/>
+    
+    <!-- Small focus knob on side -->
+    <ellipse cx="455" cy="160" rx="8" ry="12" fill="#556677" stroke="#667788" stroke-width="1"/>
+  </g>
+</svg>
