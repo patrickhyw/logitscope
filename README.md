@@ -28,7 +28,7 @@ The goal of this is to fix some failure modes of `"cat -> cat\n1135 -> 1135\nhel
 
 1. On a surface level, the bias towards ` ->` gets fixed because ` ->` doesn't appear.
 2. On a deeper level, the bias towards ` ?` can be viewed as a bias towards predicting the *current* token rather than the *next* token.
-    - As a thought experiment, imagine patching the 0th layer pre-residual of a token like `"health"` into the `?` token in `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`. This is equivalent to the prompt `"cat -> cat\n1135 -> 1135\nhello -> hello\nhealth"`, for which the most likely next two tokens are ` -> health`, not ` -> care`. However, the goal of the experiment is to predict the next token, not the current token.
+    - As a thought experiment, imagine patching the 0th layer pre-residual of a token like `"health"` into the `?` token in `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`. This is equivalent to the prompt `"cat -> cat\n1135 -> 1135\nhello -> hello\nhealth"`, for which the most likely next two tokens are ` -> health`, not ` -> care`. However, in the next token extraction problem, we want to extract ` care` and not ` health`.
 
 It could perhaps be improved with different in-context examples, such as `"hello->there;?->"`. However, keeping it simple makes it feel like a more expensive and more accurate **companion to the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens)**, where we do the rest of the forward pass instead of skipping to the decoder. This is the rationale behind the name `logitscope`, because we use a longer "scope" (all remaining layers) as opposed to a thin "lens" (decoder layer) to observe the logits.
 
