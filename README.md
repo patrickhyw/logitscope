@@ -3,7 +3,7 @@
 
 A simplified and more performant next token Patchscope than the one from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
 
-Alternatively, as a more expensive and more accurate companion to the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens).
+Alternatively, a more expensive and more accurate companion to the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens).
 
 ## Background
 The **Patchscopes framework** is a general framework, introduced in the [Patchscopes paper](https://arxiv.org/abs/2401.06102), for patching residual activations from some prompt/layer/position/model into another prompt/layer/position/model.
@@ -12,10 +12,12 @@ A **Patchscope technique** is a specific parameterization of the Patchscopes fra
 
 **Next token extraction** is the general problem of extracting the next token of a sequence using a single residual activation somewhere in the sequence. For the problem to be non-trivial, the residual activation should not be the one in the last layer and last position. The [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens) can be viewed as a technique for solving this problem.
 
-The **token identity Patchscope** is a specific Patchscope technique for solving the next token extraction problem. The idea is to take a prompt like `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"` and patch a residual activation into the `?` token without a layer shift. For instance, it could patch the layer 5 residual of `=` in `"1+1="` into the layer 5 residual for the `?` token to see if it predicts `2`.
+I use **"next token Patchscope"** to refer to a Patchscope technique for solving next token extraction.
+
+The **token identity Patchscope** is the next token Patchscope introduced in the [Patchscopes paper](https://arxiv.org/abs/2401.06102). The idea is to take a prompt like `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"` and patch a residual activation into the `?` token without a layer shift. For instance, it could patch the layer 5 residual of `=` in `"1+1="` into the layer 5 residual for the `?` token to see if it predicts `2`.
 
 ## Method
-This project studies a new Patchscope technique for solving the next token extraction problem. It is identical to the token identity Patchscope except that it uses the prompt `"?"` instead of `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`.
+This project studies a new next token Patchscope that is identical to the token identity Patchscope except with the prompt `"?"` instead of `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`.
 
 ### Comparison with Patchscope
 The goal of this is to fix some failure modes of `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`:
