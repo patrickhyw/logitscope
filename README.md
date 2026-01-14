@@ -1,9 +1,9 @@
 # Logitscope
 <img src="logitscope.svg" alt="image_showing_logitscope" width="50%">
 
-A simplified and more performant next token Patchscope than the one from the [Patchscopes paper](https://arxiv.org/abs/2401.06102).
+A simplified and more performant next token [Patchscope](https://arxiv.org/abs/2401.06102).
 
-Alternatively, a more expensive and more accurate companion to the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens).
+Alternatively, a more expensive and more accurate version of the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens).
 
 ## Background
 The **Patchscopes framework** is a general framework, introduced in the [Patchscopes paper](https://arxiv.org/abs/2401.06102), for patching residual activations from some prompt/layer/position/model into another prompt/layer/position/model.
@@ -34,7 +34,7 @@ The goal of this is to fix some failure modes of `"cat -> cat\n1135 -> 1135\nhel
     - As a thought experiment, imagine patching the 0th layer pre-residual of a token like `"health"` into the `?` token in `"cat -> cat\n1135 -> 1135\nhello -> hello\n?"`. This is equivalent to the prompt `"cat -> cat\n1135 -> 1135\nhello -> hello\nhealth"`, for which the most likely next two tokens are ` -> health`, not ` -> care`. However, in the next token extraction problem, we want to extract ` care` and not ` health`.
 
 ### Comparison with Logit Lens
-While performance could perhaps be improved with different in-context examples, keeping it simple makes it feel like a more expensive and more accurate companion to the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens) where we do the rest of the forward pass instead of skipping to the decoder. The name `logitscope` captures how we use a **longer "scope" (all remaining layers)** as opposed to a **thin "lens" (decoder layer)** to observe the logits.
+While performance could perhaps be improved with different in-context examples, keeping it simple makes it feel like a more expensive and more accurate version of the [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens) where we do the rest of the forward pass instead of skipping to the decoder. The name `logitscope` captures how we use a **longer "scope" (all remaining layers)** as opposed to a **thin "lens" (decoder layer)** to observe the logits.
 
 ## Results
 `logitscope` performs better than `patchscope` in both precision@1 and surprisal (the two metrics in the [Patchscopes paper](https://arxiv.org/abs/2401.06102).) with the same dataset ([The Pile](https://huggingface.co/datasets/EleutherAI/pile)) and one of the same models ([GPT-J 6B](https://huggingface.co/EleutherAI/gpt-j-6b)). I used the same preprocessing steps with slight changes: 2K examples from the start instead of after an offset of 10K, and reduced the word/character limits to avoid running out of GPU memory.
