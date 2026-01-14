@@ -10,7 +10,7 @@ The **Patchscopes framework** is a general framework, introduced in the [Patchsc
 
 A **Patchscope technique** is a specific parameterization of the Patchscopes framework.
 
-**Next token extraction** is the general problem of extracting the next token of a sequence using a single residual activation somewhere in the sequence. For the problem to be non-trivial, the residual activation should not be the one in the last layer and last position. The [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens) can be viewed as a technique for solving this problem.
+**Next token extraction** is the general problem of extracting the next token of a sequence using a single residual activation somewhere in the sequence. This roughly indicates when a specific residual contains enough information to predict the next token, which can be useful for understanding circuit finding, early stopping, etc. For the problem to be non-trivial, the residual activation should not be the one in the last layer and last position. The [logit lens](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens) can be viewed as a technique for solving this problem.
 
 I use **"next token Patchscope"** to refer to a Patchscope technique for solving next token extraction.
 
